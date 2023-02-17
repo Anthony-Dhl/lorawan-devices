@@ -1,0 +1,101 @@
+name: 8911EX
+description: TE model 8911EX wireless vibration sensor combines an accelerometer, a data collector, and a radio into one compact, battery-operated device that measures both vibration and temperature data. It was designed for hash environment and comes with the ATEX certification.
+
+# Hardware versions (optional, use when you have revisions)
+hardwareVersions:
+  - version: 'HCC512-B'
+    numeric: 1
+
+# Firmware versions (at least one is mandatory)
+firmwareVersions:
+  - version: '1.7.10'
+    numeric: 1
+    # Corresponding hardware versions (optional)
+    hardwareVersions:
+      - 'HCC512-B'
+
+    # Firmware features (optional)
+    # Valid values are: remote rejoin (trigger a join from the application layer), transmission interval (configure how
+    # often he device sends a message).
+    features:
+      - transmission interval
+
+    # LoRaWAN Device Profiles per region
+    # Supported regions are EU863-870, US902-928, AU915-928, AS923, CN779-787, EU433, CN470-510, KR920-923, IN865-867,
+    # RU864-870
+    profiles:
+      EU863-870:
+        id: te-sensor-profile-1-0-3
+        lorawanCertified: true
+        codec: te-8911ex-codec
+      US902-928:
+        id: te-sensor-profile-1-0-3
+        lorawanCertified: true
+        codec: te-8911ex-codec
+
+
+# Sensors that this device features (optional)
+# Valid values are:
+# 4-20 ma, accelerometer, altitude, analog input, auxiliary, barometer, battery, button, bvoc, co, co2, conductivity,
+# current, digital input, dissolved oxygen, distance, dust, energy, gps, gyroscope, h2s, humidity, iaq, level, light,
+# lightning, link, magnetometer, moisture, motion, no, no2, o3, particulate matter, ph, pir, pm2.5, pm10, potentiometer,
+# power, precipitation, pressure, proximity, pulse count, pulse frequency, radar, rainfall, rssi, smart valve, snr, so2,
+# solar radiation, sound, strain, surface temperature, temperature, tilt, time, tvoc, uv, vapor pressure, velocity,
+# vibration, voltage, water potential, water, weight, wifi ssid, wind direction, wind speed.
+sensors:
+  - vibration
+  - battery
+  - temperature
+
+# Additional radios that this device has (optional)
+# Valid values are: ble, nfc, wifi, cellular.
+additionalRadios:
+  - ble
+
+
+# Battery information (optional)
+battery:
+  replaceable: true
+  type: SAFT LS17330
+
+# Operating conditions (optional)
+operatingConditions:
+  # Temperature (Celsius)
+  temperature:
+    min: -40
+    max: 85
+  # Relative humidity (fraction of 1)
+  relativeHumidity:
+    min: 0
+    max: 0.95
+
+
+# Dimensions in mm (optional)
+# Use width, height, length and/or diameter
+dimensions:
+  width: 34
+  length: 34
+  height: 80
+
+# Key security (optional)
+# Valid values are: none, read protected and secure element.
+keySecurity:  read protected
+
+# Firmware programming (optional)
+# Valid values are: serial (when the user has a serial interface to update the firmware), fuota lorawan (when the device
+# supports LoRaWAN FUOTA via standard interfaces) and fuota other (other wireless update mechanism).
+firmwareProgramming:
+  - fuota other
+
+# Product and data sheet URLs (optional)
+productURL: https://te.com/8911EX
+dataSheetURL: https://te.com/8911EX/datasheet.pdf
+
+
+# Photos
+photos:
+  main: te-8xx1.png
+  other:
+    - te-8xx1_2.png
+
+

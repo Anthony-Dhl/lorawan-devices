@@ -1,0 +1,57 @@
+# Uplink decoder decodes binary data uplink into a JSON object (optional)
+# For documentation on writing encoders and decoders, see: https://www.thethingsindustries.com/docs/integrations/payload-formatters/javascript/
+uplinkDecoder:
+  fileName: te-8911ex.js
+  # Examples (optional)
+  examples:
+    - description: Fw revision Uplink
+      input:
+        fPort: 2
+        bytes: [50, 46, 48 ,46 ,48]
+        #[0x32, 0x2E, 0x30 ,0x2E ,0x30]
+      output:
+        data:         
+            fw_revision: "2.0.0"
+        errors: []
+        warnings: []
+
+    - description: Standard Data Uplink
+      input:
+        fPort: 1
+        bytes: [0x22,0x08 ,0xb8 ,0x04 ,0x14 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x10 ,0x00 ,0x54 ,0x0f ,0x00 ,0x00 ,0x00 ,0x00 ,0x46 ,0x00 ,0x00 ,0x00 ,0x00 ,0x1a ,0x00 ,0x00 ,0x00 ,0x00 ,0xb5 ,0x00 ,0x00 ,0x00 ,0x00 ,0x74 ,0x00 ,0x00 ,0x00 ,0x00 ,0xa4 ,0x00 ,0x00 ,0x00 ,0x00 ,0x51 ,0x00 ,0x00 ,0x00 ,0x00]
+      output:
+        data:         
+            battery: 34
+            temperature: 20.8
+            acceleration: 0.020
+        errors: []
+        warnings: []
+ 
+      
+downlinkEncoder:
+  fileName: te-8911ex.js
+  examples:
+    - description: Change measurement interval and sensor bandwidth
+      input:
+        data:
+          bandwidth: 3200 
+          measInterval: 60
+      output:
+        bytes: [0x01 ,0x0C ,0x80 ,0x00 ,0x3C]
+        errors: []
+        fPort: 12
+        warnings: []  
+# Downlink decoder decodes the encoded downlink message (optional, must be symmetric with downlinkEncoder)
+downlinkDecoder:
+  fileName: te-8911ex.js
+  examples:
+    - description: Change measurement interval and sensor bandwidth
+      input:
+        fPort: 12
+        bytes:  [0x01 ,0x0C ,0x80 ,0x00 ,0x3C]
+      output:
+        data:
+          bandwidth: 3200 
+          measInterval: 60
+        errors: []
+        warnings: []
